@@ -1,5 +1,7 @@
 ﻿using System;
 
+namespace lab2_4using System;
+
 namespace lab2_4
 {
     class lab2_4
@@ -8,8 +10,9 @@ namespace lab2_4
         {
             Console.WriteLine("программа Караевой Вика 2-1ИС:");
             Console.WriteLine("Даны два натуральных числа. Определить в каком числе больше цифр, для этого создать метод, определяющий количество цифр в числе.");
-            double ch1 = 0;//объявление переменных типа double
-            double ch2 = 0;
+
+            int ch1 = 0; //объявление переменных типа int
+            int ch2 = 0;
 
             bool noError = true; // введём булевую переменную для цикла while
 
@@ -18,28 +21,55 @@ namespace lab2_4
                 try
                 {
                     Console.WriteLine("введите два натуральных числа: "); //ввод переменных
-                    ch1 = double.Parse(Console.ReadLine());
-                    ch2 = double.Parse(Console.ReadLine());
+                    ch1 = int.Parse(Console.ReadLine());
+                    ch2 = int.Parse(Console.ReadLine());
                     noError = false;
                 }
                 catch
                 {
-                    Console.WriteLine("ошибка, введите число!");// если ввели буквы и тд, то выводим сообщение об ошибке
+                    Console.WriteLine("ошибка, введите число!"); // если ввели буквы и тд, то выводим сообщение об ошибке
                 }
             }
-            if (ch1 < ch2)//проверка условия
+
+            if (NumberOfDigits(ch1, ch2)) //проверка условия
             {
-                ch1 = ch2;
+                Console.WriteLine("Цифр в первом числе  больше, чем во втором"); //первое условие
+            }
+            else if (NumberOfDigitsInverse(ch1, ch2))
+            {
+                Console.WriteLine("Цифр во втором числе  больше, чем в первом"); //второе условие
             }
             else
             {
-                ch2 = ch1;
+                Console.WriteLine("Цифр в двух числах одинаково");
             }
-         
-        
-            Console.WriteLine("наиблльшее число: " + ch2); //вывод результата
-            Console.WriteLine("Нажмите enter, чтобы выйти");
-            Console.ReadKey(); //выходим из программы
         }
+        static bool NumberOfDigits(int ch1, int ch2) //объявление метода для первого условия
+        {
+            while (ch1 > 0 && ch2 > 0)
+            {
+                ch1 = ch1 / 10;
+                ch2 = ch2 / 10;
+            }
+
+            if (ch1 > ch2)
+            return true;
+            return false;
+        }
+        static bool NumberOfDigitsInverse(int ch1, int ch2) //объявление метода для второго условия
+        {
+            while (ch1 > 0 && ch2 > 0)
+            {
+                ch1 = ch1 / 10;
+                ch2 = ch2 / 10;
+            }
+
+            if (ch1 < ch2)
+            return true;
+            return false;
+        }
+         
+        }
+
     }
-}
+
